@@ -1,0 +1,72 @@
+<form [formGroup]="registerForm" class="example-form">
+
+  <mat-form-field class="example-full-width">
+    <mat-label i18n>UserName</mat-label>
+    <input type="text" matInput formControlName="UserName">
+    <mat-error *ngIf="isControlError('UserName', 'pattern')" i18n>
+      Username should contain only characters or digits.
+    </mat-error>
+    <mat-error *ngIf="isControlError('UserName', 'required')" i18n>
+      Username is <strong>required.</strong>
+    </mat-error>
+  </mat-form-field>
+      
+  <mat-form-field>
+    <mat-label i18n>Select your gender</mat-label>
+    <select matNativeControl required formControlName="Gender">
+      <option label="--select gender --" disabled></option>
+      <option *ngFor="let gender of genderValues" [value]="gender">
+        {{ genderEnum[+gender] }}
+        </option>
+    </select>
+    <mat-error *ngIf="isControlError('Gender', 'required')" i18n>
+      Gender is required
+    </mat-error>
+  </mat-form-field>
+      
+  <mat-form-field class="example-full-width">
+    <mat-label i18n>Email</mat-label>
+    <input type="email" matInput formControlName="Email">
+    <mat-error *ngIf="isControlError('Email', 'email')" i18n>
+      Enter a valid Email
+    </mat-error>
+    <mat-error *ngIf="isControlError('Email', 'required')" i18n>
+      Email is <strong>required.</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label i18n>Password</mat-label>
+    <input type="password" matInput formControlName="Password">
+    <mat-error *ngIf="isControlError('Password', 'pattern')" i18n>
+      Password should contain at least one character.
+    </mat-error>
+    <mat-error *ngIf="isControlError('Password', 'required')" i18n>
+      Password is <strong>required.</strong>
+    </mat-error>
+  </mat-form-field>
+      
+  <mat-form-field class="example-full-width">
+    <mat-label i18n>Age</mat-label>
+    <input type="number" matInput formControlName="Age">
+    <mat-error *ngIf="isControlError('Age', 'required')" i18n>
+      Age is <strong>required.</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label i18n>Level</mat-label>
+    <input type="text" matInput formControlName="Level">
+    <mat-error *ngIf="isControlError('Level', 'required')" i18n>
+      Level is <strong>required.</strong>
+    </mat-error>
+  </mat-form-field>
+  
+      <div class="alert alert-danger" *ngIf="registerForm.invalid && (registerForm.dirty)" i18n>
+          Please fix the errors in the form.
+      </div>
+      
+      <div class="example-button-row">
+        <button mat-raised-button color="primary" type="submit" class="btn btn-primary" (click)="registerData()" i18n>Register</button>
+      </div>
+  </form>    

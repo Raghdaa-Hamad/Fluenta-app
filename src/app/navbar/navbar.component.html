@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" *ngIf = 'isLogin' routerLink = "students" i18n>Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink = "/students/create" i18n>Register as Student</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink = "/instructors/create" i18n>Register as Instructor</a>
+        </li>
+        <li class="nav-item" *ngIf = '!isLogin'>
+          <a class="nav-link" routerLink = "/login">Login</a>
+        </li> 
+        <li class="nav-item" *ngIf = 'isLogin' (click) = 'logout()'>
+          <a class="nav-link" routerLink = "" i18n>Logout</a>
+        </li>      
+      </ul>
+    </div>
+   <mat-toolbar color="primary" class="nav-bar mat-elevation-z2">
+    <span class="spacer"></span>
+    <ng-container >
+      <mat-icon>Language</mat-icon>
+      <button mat-button [matMenuTriggerFor]="menu">
+        {{sitelanguage}}
+        <mat-icon>arrow-drop-down</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <a mat-menu-item href="/fr">française</a>
+        <a mat-menu-item href="/es">española</a>
+      </mat-menu>
+      
+    </ng-container>
+
+   </mat-toolbar>
+  </nav>
